@@ -10,9 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* =====================================================================
-   AbokiWise — Direction A, "Naija Editorial Bold"
+   AbokiWise — Direction A, "Naija Editorial Bold" (fidelity pass)
    Warm cream editorial base, forest green + mango orange accents,
    Ankara-inspired geometric divider strips, huge serif display type.
+   Structured to match the reference mockup 1:1 — compact, no filler.
    Vanilla CSS + JS only. Cross-browser safe target: iOS Safari 15+.
    ===================================================================== */
 
@@ -24,9 +25,9 @@
   --ink:        #191509;
   --ink-2:      #4A4432;
   --muted:      #746D57;
-  --forest:     #1E4B37;
-  --forest-2:   #163A2A;
-  --forest-3:   #0F2A1D;
+  --forest:     #103A22;
+  --forest-2:   #0C2E1B;
+  --forest-3:   #0A2417;
   --forest-tint:#E7EEE4;
   --mango:      #E2600F;
   --mango-2:    #B84A0C;
@@ -50,20 +51,20 @@
   --space-8: 32px;
   --space-10: 40px;
   --space-12: 48px;
-  --section-y-desktop: 104px;
-  --section-y-tablet: 72px;
-  --section-y-phone: 52px;
+  --section-y-desktop: 80px;
+  --section-y-tablet: 60px;
+  --section-y-phone: 44px;
 
   /* ---- shape ---- */
   --radius-sm: 10px;
   --radius-md: 18px;
-  --radius-lg: 28px;
+  --radius-lg: 26px;
   --radius-pill: 999px;
 
   /* ---- elevation ---- */
   --elev-ring: 0 0 0 1px rgba(25,21,9,0.08);
   --elev-raised: 0 22px 48px rgba(15,42,29,0.16);
-  --elev-card: 0 10px 26px rgba(25,21,9,0.08);
+  --elev-card: 0 8px 20px rgba(25,21,9,0.06);
   --focus-ring: 0 0 0 4px rgba(226,96,15,0.28);
 
   /* ---- motion ---- */
@@ -73,7 +74,7 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --container-max: 1220px;
+  --container-max: 1240px;
   --gutter-desktop: 40px;
   --gutter-tablet: 28px;
   --gutter-phone: 18px;
@@ -114,13 +115,23 @@ section { padding-block: var(--section-y-desktop); position: relative; }
   border-radius: var(--radius-pill);
   border: 1.5px solid var(--mango);
   color: var(--mango-2);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: var(--white);
+  background: var(--panel);
 }
 .eyebrow .dotpulse { width: 6px; height: 6px; border-radius: 50%; background: var(--mango); flex: none; }
+
+.eyebrow-plain {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mango-2);
+  margin-bottom: 12px;
+}
 
 .accent { color: var(--mango); }
 .underline-accent {
@@ -129,24 +140,24 @@ section { padding-block: var(--section-y-desktop); position: relative; }
 }
 .underline-accent svg {
   position: absolute;
-  left: 0; right: 0; bottom: -0.14em;
-  width: 100%; height: 0.32em;
+  left: 0; right: 0; bottom: -0.16em;
+  width: 100%; height: 0.3em;
   overflow: visible;
 }
 
 h2.h-sec {
-  font-size: clamp(30px, 4vw, 48px);
-  line-height: 1.08;
+  font-size: clamp(28px, 3.6vw, 42px);
+  line-height: 1.1;
   letter-spacing: -0.01em;
   font-weight: 700;
-  max-width: 18ch;
+  max-width: 16ch;
 }
 .lead {
-  font-size: clamp(16px, 1.6vw, 19px);
+  font-size: clamp(15.5px, 1.4vw, 17.5px);
   color: var(--ink-2);
-  max-width: 52ch;
+  max-width: 46ch;
 }
-.body-m { color: var(--muted); max-width: 58ch; font-size: 16px; }
+.body-m { color: var(--muted); max-width: 50ch; font-size: 15.5px; }
 .small { font-size: 13.5px; color: var(--muted); }
 
 /* ---------- buttons ---------- */
@@ -155,11 +166,11 @@ h2.h-sec {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-height: 54px;
-  padding: 0 28px;
+  min-height: 50px;
+  padding: 0 26px;
   border-radius: var(--radius-pill);
   font-family: var(--font-body);
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.005em;
   text-decoration: none;
@@ -171,17 +182,17 @@ h2.h-sec {
               transform var(--motion-fast) var(--ease-standard),
               box-shadow var(--motion-fast) var(--ease-standard);
 }
-.btn .tg { width: 16px; height: 16px; flex: none; }
+.btn .tg { width: 15px; height: 15px; flex: none; }
 .btn-primary { background: var(--mango); color: var(--white); box-shadow: 0 10px 24px rgba(226,96,15,0.30); }
 .btn-primary:hover { background: var(--mango-2); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(226,96,15,0.36); }
 .btn-primary:active { background: var(--mango-2); transform: translateY(0) scale(0.99); }
-.btn-forest { background: var(--forest); color: var(--white); }
-.btn-forest:hover { background: var(--forest-2); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(15,42,29,0.30); }
+.btn-forest { background: var(--forest); color: var(--white); box-shadow: 0 10px 24px rgba(10,36,23,0.28); }
+.btn-forest:hover { background: var(--forest-2); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(10,36,23,0.32); }
 .btn-secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
 .btn-secondary:hover { background: var(--white); transform: translateY(-2px); }
 .btn-onlight { background: var(--white); color: var(--forest); }
 .btn-onlight:hover { background: var(--cream); transform: translateY(-2px); }
-.btn-sm { min-height: 44px; padding: 0 20px; font-size: 14px; }
+.btn-sm { min-height: 42px; padding: 0 18px; font-size: 13.5px; }
 .btn:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
@@ -190,10 +201,11 @@ h2.h-sec {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  min-height: 44px;
+  min-height: 40px;
   color: var(--ink);
   text-decoration: none;
   font-weight: 700;
+  font-size: 14.5px;
   border-bottom: 2px solid var(--ink);
   transition: color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard);
 }
@@ -204,7 +216,7 @@ h2.h-sec {
   position: sticky;
   top: 0;
   z-index: 50;
-  height: 76px;
+  height: 68px;
   display: flex;
   align-items: center;
   background: rgba(246,238,219,0.7);
@@ -223,25 +235,25 @@ h2.h-sec {
 .nav-in { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); }
 .wordmark {
   font-family: var(--font-display);
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.01em;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   color: var(--ink);
 }
 .wordmark .mark {
-  width: 34px; height: 34px; border-radius: 10px;
+  width: 32px; height: 32px; border-radius: 9px;
   background: var(--forest);
   display: grid; place-items: center;
   flex: none;
 }
-.wordmark .mark svg { width: 16px; height: 16px; }
+.wordmark .mark svg { width: 15px; height: 15px; }
 .nav-links { display: flex; align-items: center; gap: var(--space-8); }
 .nav-links a {
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--ink-2);
   text-decoration: none;
@@ -252,27 +264,36 @@ h2.h-sec {
 /* ---------- ankara divider strips ---------- */
 .ankara { width: 100%; display: block; line-height: 0; overflow: hidden; }
 .ankara svg { display: block; width: 100%; }
-.ankara--sm { height: 26px; }
-.ankara--lg { height: 64px; }
+.ankara--sm { height: 22px; }
 
 /* ---------- hero ---------- */
-.hero { padding-top: 56px; padding-bottom: 64px; overflow: visible; }
+.hero { padding-top: 40px; padding-bottom: 44px; overflow: visible; }
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
-  gap: clamp(28px, 5vw, 60px);
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(24px, 4.6vw, 56px);
   align-items: start;
 }
-.hero-copy > * + * { margin-top: var(--space-5); }
+.hero-copy > * + * { margin-top: var(--space-4); }
 .h-hero {
-  font-size: clamp(46px, 7.4vw, 96px);
-  line-height: 0.98;
+  font-size: clamp(42px, 6.6vw, 84px);
+  line-height: 0.96;
   letter-spacing: -0.015em;
   font-weight: 700;
   color: var(--ink);
 }
 .h-hero .stop { color: var(--mango); font-size: 1.05em; }
-.hero-cta { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; margin-top: var(--space-8) !important; }
+.hero-cta { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; margin-top: var(--space-6) !important; }
+.hero-trust {
+  margin-top: var(--space-6) !important;
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-trust .sep { color: var(--line); }
 
 /* ---------- chat card (hero centerpiece) ---------- */
 .chat-shell {
@@ -284,48 +305,67 @@ h2.h-sec {
   border-radius: var(--radius-lg);
   box-shadow: var(--elev-raised), var(--elev-ring);
   overflow: hidden;
-  max-width: 420px;
+  max-width: 400px;
   margin-inline: auto;
   width: 100%;
-  transform: rotate(1.1deg);
+  transform: rotate(2deg);
   border: 1px solid rgba(25,21,9,0.06);
+  position: relative;
+}
+.chat-sparks {
+  position: absolute;
+  top: -26px;
+  right: 6px;
+  width: 40px;
+  height: 40px;
+  z-index: 3;
+  transform: rotate(6deg);
 }
 .chat-head {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: 14px 18px;
+  gap: 9px;
+  padding: 13px 16px;
   border-bottom: 1px solid var(--line-soft);
   background: var(--white);
 }
-.chat-head .back { color: var(--muted); font-size: 18px; line-height: 1; flex: none; }
+.chat-head .back { color: var(--muted); font-size: 17px; line-height: 1; flex: none; }
+.chat-unread {
+  background: var(--forest);
+  color: var(--white);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  flex: none;
+}
 .chat-avatar {
-  width: 36px; height: 36px; border-radius: 50%;
+  width: 32px; height: 32px; border-radius: 50%;
   background: var(--forest);
   display: grid; place-items: center;
   flex: none;
 }
-.chat-avatar svg { width: 17px; height: 17px; }
+.chat-avatar svg { width: 15px; height: 15px; }
 .chat-who-row { display: flex; align-items: center; gap: 5px; }
-.chat-who { font-family: var(--font-display); font-weight: 700; font-size: 15px; line-height: 1.2; color: var(--ink); }
-.chat-verified { width: 14px; height: 14px; flex: none; }
-.chat-status { font-size: 12px; color: var(--muted); letter-spacing: 0.01em; }
-.chat-head .kebab { margin-left: auto; color: var(--muted); font-size: 18px; letter-spacing: 1px; }
+.chat-who { font-family: var(--font-display); font-weight: 700; font-size: 14.5px; line-height: 1.2; color: var(--ink); }
+.chat-verified { width: 13px; height: 13px; flex: none; }
+.chat-status { font-size: 11.5px; color: var(--muted); letter-spacing: 0.01em; }
+.chat-head .kebab { margin-left: auto; color: var(--muted); font-size: 17px; letter-spacing: 1px; }
 .chat-body {
-  padding: 18px 16px 14px;
+  padding: 16px 14px 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
   background: #D9E4C8;
-  min-height: 300px;
+  min-height: 280px;
 }
 .msg-row { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
 .bub-bot {
   max-width: 88%;
-  padding: 11px 15px;
-  font-size: 14.5px;
-  line-height: 1.48;
-  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.46;
+  border-radius: 15px;
   border-bottom-left-radius: 5px;
   background: var(--white);
   color: var(--ink);
@@ -342,9 +382,9 @@ h2.h-sec {
 .typing-row.show { display: flex; }
 .typing-bub {
   background: var(--white);
-  border-radius: 16px;
+  border-radius: 15px;
   border-bottom-left-radius: 5px;
-  padding: 13px 16px;
+  padding: 12px 15px;
   display: inline-flex;
   gap: 4px;
   align-items: center;
@@ -359,7 +399,7 @@ h2.h-sec {
 .typing-bub span:nth-child(3) { animation-delay: 240ms; }
 @keyframes bounceDot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
 .chat-foot {
-  padding: 14px 16px 18px;
+  padding: 13px 15px 16px;
   background: var(--white);
   border-top: 1px solid var(--line-soft);
 }
@@ -367,44 +407,47 @@ h2.h-sec {
 .chat-form.show { opacity: 1; max-height: 600px; }
 .chat-form label {
   display: block;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--forest);
   margin-bottom: 8px;
 }
 .chat-form input[type="text"] {
   width: 100%;
-  padding: 13px 15px;
+  padding: 12px 14px;
   border-radius: var(--radius-pill);
   border: 1.5px solid var(--line);
   background: var(--cream);
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--ink);
-  margin-bottom: 12px;
+  margin-bottom: 11px;
 }
 .chat-form input[type="text"]::placeholder { color: var(--muted); }
 .chat-form .btn { width: 100%; }
-.chat-reassure { margin-top: 10px; font-size: 12px; color: var(--muted); line-height: 1.5; text-align: center; }
+.chat-reassure { margin-top: 9px; font-size: 11.5px; color: var(--muted); line-height: 1.5; text-align: center; }
 
 /* ---------- marquee ---------- */
-.marquee-wrap { padding-block: 40px; overflow: hidden; }
+.marquee-wrap { padding-block: 20px; overflow: hidden; background: var(--cream); }
+.marquee-in { display: flex; align-items: center; gap: 20px; }
 .marquee-label {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 13px;
   font-weight: 700;
-  color: var(--mango-2);
+  color: var(--ink);
   letter-spacing: 0.01em;
-  margin-bottom: 18px;
+  flex: none;
+  white-space: nowrap;
 }
-.marquee-track-outer { overflow: hidden; position: relative; }
+.marquee-label .curl { width: 20px; height: 16px; color: var(--mango); flex: none; }
+.marquee-track-outer { overflow: hidden; position: relative; flex: 1 1 auto; min-width: 0; }
 .marquee-track-outer::before, .marquee-track-outer::after {
   content: "";
   position: absolute;
   top: 0; bottom: 0;
-  width: 60px;
+  width: 48px;
   z-index: 2;
   pointer-events: none;
 }
@@ -412,35 +455,45 @@ h2.h-sec {
 .marquee-track-outer::after { right: 0; background: linear-gradient(270deg, var(--cream) 0%, rgba(246,238,219,0) 100%); }
 .marquee-track {
   display: flex;
-  gap: 12px;
+  align-items: center;
+  gap: 14px;
   width: max-content;
-  animation: marqueeScroll 32s linear infinite;
+  animation: marqueeScroll 30s linear infinite;
 }
 .marquee-track-outer:hover .marquee-track { animation-play-state: paused; }
 @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
+  gap: 9px;
+  padding: 8px 16px 8px 8px;
   border-radius: var(--radius-pill);
-  background: var(--white);
+  background: var(--panel);
   border: 1.5px solid var(--line);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--ink-2);
   white-space: nowrap;
   flex: none;
 }
-.chip .chip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mango); flex: none; }
+.chip-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: grid; place-items: center;
+  flex: none;
+}
+.chip-icon svg { width: 13px; height: 13px; }
+.chip-icon--orange { background: var(--mango); }
+.chip-icon--green { background: var(--forest); }
+.chip-sep { color: var(--mango); font-size: 14px; flex: none; }
 
 /* ---------- stats ---------- */
-.stats-band { background: var(--cream-2); }
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 4vw, 56px); }
-.stat { display: grid; gap: 10px; }
+.stats-band { background: var(--cream-2); padding-block: 44px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
+.stat { display: grid; gap: 10px; padding-left: clamp(16px, 2.4vw, 32px); border-left: 1px solid var(--line); }
+.stat:first-child { border-left: none; padding-left: 0; }
 .stat b {
   font-family: var(--font-display);
-  font-size: clamp(52px, 7vw, 88px);
+  font-size: clamp(44px, 5.6vw, 70px);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 0.95;
@@ -449,209 +502,104 @@ h2.h-sec {
   align-items: baseline;
 }
 .stat b .num-accent { color: var(--mango); }
-.naira-sym { font-family: var(--font-body); font-size: 0.62em; font-weight: 700; vertical-align: 0.08em; margin-right: 2px; }
-.stat span { font-size: 15px; color: var(--ink-2); font-weight: 500; max-width: 26ch; }
+.naira-sym { font-family: var(--font-body); font-size: 0.6em; font-weight: 700; vertical-align: 0.06em; margin-right: 1px; }
+.stat-cap { display: flex; align-items: flex-start; gap: 8px; }
+.stat-cap svg { width: 16px; height: 16px; color: var(--forest); flex: none; margin-top: 2px; }
+.stat-cap span { font-size: 14px; color: var(--ink-2); font-weight: 500; max-width: 22ch; line-height: 1.35; }
 
-/* ---------- context / feature panel ---------- */
-.context-grid {
+/* ---------- feature / smart help section ---------- */
+.feature-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(32px, 5vw, 64px);
-  align-items: center;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: clamp(28px, 4.6vw, 56px);
+  align-items: start;
 }
-.context-copy > * + * { margin-top: var(--space-5); }
-.context-note {
-  margin-top: var(--space-8) !important;
-  padding-top: var(--space-6);
-  border-top: 2px solid var(--ink);
-  font-size: 17px;
-  color: var(--ink-2);
-  max-width: 46ch;
-  font-weight: 500;
+.feature-copy > * + * { margin-top: var(--space-4); }
+.feature-copy .h-sec { margin-top: 0; }
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
-.feature-panel {
-  background: var(--forest);
-  border-radius: var(--radius-lg);
-  padding: clamp(32px, 4vw, 48px);
-  color: var(--white);
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--elev-raised);
-  transform: rotate(-0.8deg);
-}
-.feature-panel .fp-num {
-  font-family: var(--font-display);
-  font-size: clamp(64px, 8vw, 108px);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-}
-.feature-panel .fp-num .num-accent { color: var(--mango-2); background: var(--white); padding: 0 10px; border-radius: 8px; }
-.feature-panel p { margin-top: var(--space-4); font-size: 17px; color: rgba(255,255,255,0.88); max-width: 30ch; }
-.feature-panel .fp-deco { position: absolute; right: -30px; bottom: -30px; width: 160px; height: 160px; opacity: 0.5; }
-
-/* ---------- steps ---------- */
-.steps-head { display: grid; gap: var(--space-4); margin-bottom: clamp(40px, 6vw, 64px); }
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 3.4vw, 44px); }
-.step {
-  position: relative;
-  padding: var(--space-6);
-  border-radius: var(--radius-md);
+.tile {
   background: var(--panel);
-  box-shadow: var(--elev-card);
+  border: 1.5px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  padding: 18px 16px;
   transition: transform var(--motion-base) var(--ease-standard), box-shadow var(--motion-base) var(--ease-standard);
 }
-.step:hover { transform: translateY(-4px); box-shadow: var(--elev-raised); }
-.step-n {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: var(--mango-tint);
-  color: var(--mango-2);
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 700;
+.tile:hover { transform: translateY(-3px); box-shadow: var(--elev-card); }
+.tile-icon {
+  width: 34px; height: 34px; border-radius: 9px;
+  display: grid; place-items: center;
+  margin-bottom: 12px;
 }
-.step h3 { margin-top: var(--space-4); font-size: 21px; }
-.step p { margin-top: var(--space-3); color: var(--muted); font-size: 15.5px; }
-.steps-tail {
-  margin-top: clamp(40px, 5vw, 56px);
-  text-align: center;
-  font-weight: 600;
-  color: var(--forest);
-  font-size: 16.5px;
-}
+.tile-icon svg { width: 17px; height: 17px; }
+.tile-icon--orange { background: var(--mango); }
+.tile-icon--green { background: var(--forest); }
+.tile h3 { font-size: 15.5px; font-weight: 700; font-family: var(--font-body); color: var(--ink); }
+.tile p { margin-top: 6px; font-size: 13.5px; color: var(--muted); line-height: 1.42; }
 
-/* ---------- comparison bento ---------- */
-.bento {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: clamp(16px, 1.8vw, 22px);
-  margin-top: clamp(40px, 5vw, 64px);
-}
-.vs-card {
-  border-radius: var(--radius-md);
-  padding: clamp(24px, 2.4vw, 32px);
-  background: var(--panel);
-  box-shadow: var(--elev-card);
+/* ---------- pricing (compact single row) ---------- */
+.pricing-band { padding-block: 56px; }
+.price-card {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  transition: transform var(--motion-base) var(--ease-standard),
-              box-shadow var(--motion-base) var(--ease-standard);
-  border: 1.5px solid var(--line-soft);
-}
-.vs-card:hover { transform: translateY(-4px); box-shadow: var(--elev-raised); }
-.col-8 { grid-column: span 8; }
-.col-4 { grid-column: span 4; }
-.col-6 { grid-column: span 6; }
-.col-12 { grid-column: span 12; }
-.vs-b { background: var(--forest); color: var(--white); border-color: var(--forest); }
-.vs-b .vs-topic { color: var(--mango-tint); }
-.vs-b .claim { color: var(--white); }
-.vs-b .other { color: rgba(255,255,255,0.7); border-top-color: rgba(255,255,255,0.22); }
-.vs-topic {
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--mango-2);
-}
-.vs-card p.claim { font-size: 18px; color: var(--ink); line-height: 1.45; font-weight: 500; }
-.vs-card p.other {
-  margin-top: auto;
-  padding-top: var(--space-4);
-  border-top: 1.5px solid var(--line-soft);
-  font-size: 14px;
-  color: var(--muted);
-}
-.vs-a-in { display: grid; grid-template-columns: 1fr 120px; gap: var(--space-6); align-items: center; }
-.vs-icon-box {
-  width: 100%;
-  aspect-ratio: 1/1;
-  border-radius: var(--radius-sm);
-  background: var(--mango-tint);
-  display: grid;
-  place-items: center;
-}
-.vs-icon-box svg { width: 40%; height: 40%; color: var(--mango-2); }
-
-/* ---------- metrics reuse for pricing header ---------- */
-.price-wrap {
-  display: grid;
-  grid-template-columns: 0.86fr 1.14fr;
-  gap: clamp(32px, 5vw, 64px);
   align-items: center;
+  justify-content: space-between;
+  gap: clamp(20px, 3vw, 40px);
+  flex-wrap: wrap;
   background: var(--panel);
+  border: 1.5px solid var(--line-soft);
   border-radius: var(--radius-lg);
   box-shadow: var(--elev-card);
-  border: 1.5px solid var(--line-soft);
-  padding: clamp(28px, 4vw, 56px);
+  padding: 28px clamp(24px, 3.6vw, 44px);
 }
-.price-figure { display: grid; gap: var(--space-3); }
-.price-figure .amt {
+.price-amt {
   font-family: var(--font-display);
-  font-size: clamp(44px, 5.6vw, 66px);
+  font-size: clamp(36px, 4vw, 48px);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
   color: var(--ink);
+  flex: none;
 }
-.price-figure .amt .accent { color: var(--mango); }
-.price-figure .per { font-size: 14.5px; color: var(--muted); }
-.price-list { display: grid; gap: var(--space-4); margin: var(--space-6) 0 var(--space-8); list-style: none; }
-.price-list li {
-  display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: var(--space-5);
-  align-items: baseline;
-  font-size: 15.5px;
-  color: var(--ink-2);
-}
-.price-list li i {
-  font-style: normal;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--forest);
-  font-weight: 700;
-}
-.price-cta { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+.price-amt .per { display: block; font-family: var(--font-body); font-size: 12.5px; font-weight: 600; color: var(--muted); margin-top: 4px; letter-spacing: 0; }
+.price-mid { flex: 1 1 260px; min-width: 200px; }
+.price-mid h3 { font-size: 18px; font-weight: 700; font-family: var(--font-display); }
+.price-mid p { margin-top: 4px; font-size: 13.5px; color: var(--muted); }
+.price-cta { flex: none; }
 
 /* ---------- faq ---------- */
-.faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
-.faq-list { display: grid; gap: var(--space-3); }
+.faq-band { padding-block: 60px; }
+.faq-head { text-align: center; max-width: 46ch; margin-inline: auto; margin-bottom: 32px; display: grid; gap: 8px; justify-items: center; }
+.faq-list { display: grid; gap: 10px; max-width: 760px; margin-inline: auto; }
 details {
   background: var(--panel);
   border-radius: var(--radius-md);
-  box-shadow: var(--elev-card);
   overflow: hidden;
   border: 1.5px solid var(--line-soft);
   transition: box-shadow var(--motion-base) var(--ease-standard);
 }
-details[open] { box-shadow: var(--elev-raised); }
+details[open] { box-shadow: var(--elev-card); }
 summary {
   list-style: none;
   cursor: pointer;
-  padding: var(--space-5) var(--space-6);
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-5);
   font-family: var(--font-display);
-  font-size: 17.5px;
+  font-size: 16px;
   font-weight: 700;
-  min-height: 44px;
+  min-height: 40px;
   color: var(--ink);
   transition: background var(--motion-fast) var(--ease-standard);
 }
 summary::-webkit-details-marker { display: none; }
 summary:hover { background: var(--mango-tint); }
 .chev {
-  width: 10px; height: 10px; flex: none;
+  width: 9px; height: 9px; flex: none;
   border-right: 2px solid var(--mango);
   border-bottom: 2px solid var(--mango);
   transform: rotate(45deg) translateY(-2px);
@@ -659,39 +607,42 @@ summary:hover { background: var(--mango-tint); }
 }
 details[open] .chev { transform: rotate(225deg) translateY(-2px); }
 details p {
-  padding: 0 var(--space-6) var(--space-6);
+  padding: 0 20px 18px;
   color: var(--muted);
-  font-size: 15.5px;
+  font-size: 14.5px;
   max-width: 62ch;
 }
 
-/* ---------- final cta ---------- */
-.final { background: var(--forest-3); color: var(--white); overflow: hidden; }
+/* ---------- closing cta band (dark forest, mockup style) ---------- */
+.final { background: var(--forest-3); color: var(--white); overflow: hidden; padding-block: 40px; }
 .final-in {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-8);
+  gap: var(--space-6);
   flex-wrap: wrap;
 }
-.final-copy { max-width: 560px; }
-.final h2 { color: var(--white); font-size: clamp(30px, 4vw, 44px); line-height: 1.06; letter-spacing: -0.01em; font-weight: 700; }
+.final-copy { max-width: 480px; }
+.final h2 { color: var(--white); font-size: clamp(26px, 3.2vw, 36px); line-height: 1.08; letter-spacing: -0.01em; font-weight: 700; }
 .final h2 .accent { color: var(--mango); }
-.final p { color: rgba(255,255,255,0.78); font-size: 16px; max-width: 44ch; margin-top: var(--space-3); }
+.final p { color: rgba(255,255,255,0.72); font-size: 14.5px; max-width: 42ch; margin-top: 6px; }
 .final-actions { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
-.final .handle { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.02em; color: rgba(255,255,255,0.6); }
+.final .handle { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.02em; color: rgba(255,255,255,0.55); }
 
 /* ---------- footer ---------- */
-footer { padding-block: var(--space-12); border-top: 1px solid var(--line); background: var(--cream); }
+footer { padding-block: 24px; border-top: 1px solid var(--line); background: var(--cream); }
 .foot-in { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; }
 .foot-in .small { max-width: 46ch; }
+.foot-in .wordmark { font-size: 16px; }
+.foot-in .wordmark .mark { width: 26px; height: 26px; border-radius: 7px; }
+.foot-in .wordmark .mark svg { width: 12px; height: 12px; }
 
 /* ---------- reveal (JS-driven scroll animation) ---------- */
-.reveal { opacity: 0; transform: translateY(20px); }
+.reveal { opacity: 0; transform: translateY(18px); }
 .reveal.in {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 560ms var(--ease-standard), transform 560ms var(--ease-standard);
+  transition: opacity 520ms var(--ease-standard), transform 520ms var(--ease-standard);
   transition-delay: var(--d, 0ms);
 }
 
@@ -699,17 +650,13 @@ footer { padding-block: var(--space-12); border-top: 1px solid var(--line); back
 @media (max-width: 1024px) {
   .container { padding-inline: var(--gutter-tablet); }
   section { padding-block: var(--section-y-tablet); }
-  .hero { padding-top: var(--space-10); padding-bottom: 40px; }
+  .hero { padding-top: var(--space-8); padding-bottom: 32px; }
   .hero-grid { grid-template-columns: 1fr; }
-  .chat-shell { max-width: 480px; margin-inline: auto; }
+  .chat-shell { max-width: 440px; margin-inline: auto; }
   .chat { transform: none; }
-  .context-grid { grid-template-columns: 1fr; }
-  .feature-panel { order: -1; transform: none; max-width: 480px; margin-inline: auto; }
-  .steps { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
-  .col-8, .col-4, .col-6 { grid-column: span 12; }
-  .stats { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
-  .price-wrap { grid-template-columns: 1fr; }
-  .faq-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .tiles-grid { grid-template-columns: repeat(3, 1fr); }
+  .stats { grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
   .nav-links { display: none; }
   .final-in { justify-content: flex-start; }
 }
@@ -718,26 +665,33 @@ footer { padding-block: var(--space-12); border-top: 1px solid var(--line); back
 @media (max-width: 640px) {
   .container { padding-inline: var(--gutter-phone); }
   section { padding-block: var(--section-y-phone); }
-  .hero { padding-top: var(--space-8); padding-bottom: 32px; }
-  .h-hero { font-size: clamp(38px, 12vw, 56px); }
+  .hero { padding-top: var(--space-6); padding-bottom: 24px; }
+  .h-hero { font-size: clamp(36px, 12vw, 50px); }
   .hero-cta { gap: var(--space-4); }
-  .hero-cta .btn, .price-cta .btn, .final-actions .btn { width: 100%; }
-  .hero-cta .textlink, .price-cta .textlink { width: 100%; justify-content: center; }
+  .hero-cta .btn { width: 100%; }
+  .hero-cta .textlink { width: 100%; justify-content: center; }
   .chat { max-width: none; }
-  .chat-body { min-height: 260px; }
-  .steps { grid-template-columns: 1fr; gap: var(--space-6); }
-  .stats { grid-template-columns: 1fr 1fr; gap: var(--space-6); row-gap: var(--space-8); }
-  .stat:nth-child(3) { grid-column: span 2; }
-  .stat b { font-size: clamp(46px, 15vw, 64px); }
-  .vs-a-in { grid-template-columns: 1fr; }
-  .vs-icon-box { max-width: 100px; }
-  .price-list li { grid-template-columns: 1fr; gap: 2px; }
+  .chat-body { min-height: 240px; }
+  .marquee-in { flex-wrap: wrap; }
+  .marquee-label { width: 100%; }
+  .stats { grid-template-columns: 1fr; gap: var(--space-6); }
+  .stat { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: var(--space-5); }
+  .stat:first-child { border-top: none; padding-top: 0; }
+  .stat b { font-size: clamp(42px, 15vw, 58px); }
+  .tiles-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .price-card { flex-direction: column; align-items: stretch; text-align: center; }
+  .price-mid { text-align: center; }
+  .price-cta .btn { width: 100%; }
+  .faq-list { gap: 8px; }
   .final-in { flex-direction: column; align-items: flex-start; }
   .final-actions { width: 100%; }
   .final-actions .btn { width: auto; }
-  .foot-in { flex-direction: column; align-items: flex-start; gap: var(--space-5); }
-  .ankara--lg { height: 44px; }
-  .ankara--sm { height: 20px; }
+  .foot-in { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+  .ankara--sm { height: 16px; }
+}
+
+@media (max-width: 420px) {
+  .tiles-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -750,7 +704,7 @@ footer { padding-block: var(--space-12); border-top: 1px solid var(--line); back
   }
   html:not(.motion-forced) .marquee-track { animation: none !important; }
   html:not(.motion-forced) .bub-bot { animation: none !important; opacity: 1 !important; transform: none !important; }
-  html:not(.motion-forced) .btn:hover, html:not(.motion-forced) .vs-card:hover, html:not(.motion-forced) .step:hover {
+  html:not(.motion-forced) .btn:hover, html:not(.motion-forced) .tile:hover {
     transform: none !important;
   }
 }
@@ -762,29 +716,31 @@ footer { padding-block: var(--space-12); border-top: 1px solid var(--line); back
 <!-- Shared SVG defs: ankara tile patterns + reusable icons (kept hidden, referenced via <use>/fill:url()) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <pattern id="ankaraSm" width="56" height="26" patternUnits="userSpaceOnUse">
-      <rect width="56" height="26" fill="#173B29"/>
-      <polygon points="0,26 28,0 56,26" fill="#E2600F"/>
-      <polygon points="14,26 28,10 42,26" fill="#F6EEDB"/>
-      <circle cx="28" cy="20" r="2.6" fill="#173B29"/>
-      <polygon points="0,0 10,0 0,9" fill="#F6EEDB"/>
-      <polygon points="56,0 46,0 56,9" fill="#F6EEDB"/>
-    </pattern>
-    <pattern id="ankaraLg" width="100" height="60" patternUnits="userSpaceOnUse">
-      <rect width="100" height="60" fill="#173B29"/>
-      <polygon points="0,60 50,4 100,60" fill="#1E4B37"/>
-      <polygon points="50,44 66,60 34,60" fill="#E2600F"/>
-      <circle cx="50" cy="30" r="10" fill="none" stroke="#F6EEDB" stroke-width="2.5"/>
-      <circle cx="50" cy="30" r="3.2" fill="#E2600F"/>
-      <polygon points="0,0 16,0 0,14" fill="#E2600F"/>
-      <polygon points="100,0 84,0 100,14" fill="#E2600F"/>
-      <polygon points="0,60 16,60 0,46" fill="#F6EEDB"/>
-      <polygon points="100,60 84,60 100,46" fill="#F6EEDB"/>
+    <pattern id="ankaraSm" width="64" height="22" patternUnits="userSpaceOnUse">
+      <rect width="64" height="22" fill="#0C2E1B"/>
+      <polygon points="0,22 16,0 32,22" fill="#E2600F"/>
+      <polygon points="32,22 48,0 64,22" fill="#173B29"/>
+      <circle cx="16" cy="16" r="2.2" fill="#F6EEDB"/>
+      <circle cx="48" cy="16" r="2.2" fill="#E2600F"/>
+      <rect x="0" y="0" width="8" height="22" fill="#F6EEDB" opacity="0.14"/>
     </pattern>
     <symbol id="icon-plane" viewBox="0 0 24 24"><path d="M21.5 2.5L2.7 10.1c-.9.36-.87 1.63.04 1.94l4.86 1.67 1.9 5.75c.28.85 1.42.98 1.9.22l2.6-4.06 4.7 3.45c.72.53 1.72.13 1.9-.75l3-15.02c.16-.8-.66-1.5-1.42-1.15z" fill="currentColor"/></symbol>
     <symbol id="icon-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#4AA3E8"/><path d="M7 12.5l3 3 7-7.5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="icon-doc" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15 2v5h5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h7M9 15.5h7M9 18.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+    <symbol id="icon-doc" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M15 2v5h5" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M9 12h7M9 15.5h7M9 18.5h4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></symbol>
     <symbol id="icon-squiggle" viewBox="0 0 200 16"><path d="M2 12 Q 20 2, 40 11 T 80 10 T 120 11 T 160 10 T 198 11" fill="none" stroke="#E2600F" stroke-width="5" stroke-linecap="round"/></symbol>
+    <symbol id="icon-quote" viewBox="0 0 24 24"><path d="M7 9c-2 0-3.4 1.5-3.4 3.6C3.6 14.6 5 16 6.8 16c.4 0 .8-.05 1.1-.16C7.4 17.4 6.1 18.4 4.3 18.8l.5 1.6c3-.7 5-2.8 5-6.1C9.8 11.2 8.6 9 7 9zm9 0c-2 0-3.4 1.5-3.4 3.6 0 2 1.4 3.4 3.2 3.4.4 0 .8-.05 1.1-.16-.5 1.56-1.8 2.56-3.6 2.96l.5 1.6c3-.7 5-2.8 5-6.1 0-3.1-1.2-5.3-2.8-5.3z" fill="#fff"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M8 15v-4M12 15V8M16 15v-6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M4 6.5l8 6.5 8-6.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M3 10h18M9 4v16" stroke="#fff" stroke-width="1.8"/></symbol>
+    <symbol id="icon-scale" viewBox="0 0 24 24"><path d="M12 3v18M6 7h12M4 7l2 6a2.5 2.5 0 0 0 5 0L9 7M14 7l2 6a2.5 2.5 0 0 0 5 0L19 7" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-people" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3" fill="currentColor"/><circle cx="16" cy="8" r="3" fill="currentColor"/><path d="M2 20c0-3.5 3-6 6-6s6 2.5 6 6M12 20c0-3 2.5-5.4 5.4-5.4S22.8 17 22.8 20" stroke="currentColor" stroke-width="0" fill="currentColor" opacity="0.9"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="13.5" r="1.4" fill="currentColor"/></symbol>
+    <symbol id="icon-pen" viewBox="0 0 24 24"><path d="M4 20l1-4.5L15.5 5l3.5 3.5L8.5 19 4 20z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.5 6.5l4 4" stroke="#fff" stroke-width="1.7"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 6.5c-1.6-1.3-4-2-7-2v13.5c3 0 5.4.7 7 2 1.6-1.3 4-2 7-2V4.5c-3 0-5.4.7-7 2z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 6.5v13.5" stroke="#fff" stroke-width="1.7"/></symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="#fff" stroke-width="1.7"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="15.5" r="1.3" fill="#fff"/></symbol>
+    <symbol id="icon-arrow-curl" viewBox="0 0 32 24"><path d="M2 4c8 0 16 2 18 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M14 15l6 2-1-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </defs>
 </svg>
 
@@ -814,21 +770,28 @@ footer { padding-block: var(--space-12); border-top: 1px solid var(--line); back
     <div class="container hero-grid">
       <div class="hero-copy">
         <span class="eyebrow reveal" data-od-id="hero-eyebrow"><span class="dotpulse" aria-hidden="true"></span>AI assistant for Nigerian professionals</span>
-        <h1 class="h-hero reveal" style="--d:60ms" data-od-id="hero-headline">Your wise friend<br>at work<span class="stop">.</span></h1>
-        <p class="lead reveal" style="--d:120ms" data-od-id="hero-subtext">AbokiWise researches, drafts and analyses for you inside Telegram. No app to install. We set the whole thing up.</p>
+        <h1 class="h-hero reveal" style="--d:60ms" data-od-id="hero-headline">Your<br>wise friend<br>at work<span class="stop">.</span></h1>
+        <p class="lead reveal" style="--d:120ms" data-od-id="hero-subtext">AbokiWise lives in Telegram to help you write better, work faster, and stay sharp&mdash;anytime, anywhere.</p>
         <div class="hero-cta reveal" style="--d:180ms">
-          <a class="btn btn-primary" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener" data-od-id="hero-cta-primary">
+          <a class="btn btn-forest" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener" data-od-id="hero-cta-primary">
             <svg class="tg" viewBox="0 0 24 24" fill="#fff"><use href="#icon-plane"></use></svg>
             Chat with AbokiWise
           </a>
           <a class="textlink" href="#how" data-od-id="hero-cta-secondary">See how it works →</a>
         </div>
+        <p class="hero-trust reveal" style="--d:220ms" data-od-id="hero-trust-line">Powered by 400+ AI models <span class="sep">&middot;</span> Built for Nigeria</p>
       </div>
 
       <div class="chat-shell reveal" style="--d:240ms" data-od-id="hero-chat-mockup">
         <div class="chat" id="chatCard">
+          <svg class="chat-sparks" viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M6 34 L20 6" stroke="#E2600F" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M16 36 L26 12" stroke="#E2600F" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M26 36 L32 18" stroke="#E2600F" stroke-width="3.4" stroke-linecap="round"/>
+          </svg>
           <div class="chat-head">
             <span class="back" aria-hidden="true">‹</span>
+            <span class="chat-unread" aria-hidden="true">4</span>
             <span class="chat-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff"><use href="#icon-plane"></use></svg></span>
             <span>
               <span class="chat-who-row"><span class="chat-who">AbokiWise</span><svg class="chat-verified" viewBox="0 0 24 24"><use href="#icon-check"></use></svg></span>
@@ -854,184 +817,136 @@ footer { padding-block: var(--space-12); border-top: 1px solid var(--line); back
     </div>
   </section>
 
+  <div class="ankara ankara--sm" aria-hidden="true"><svg viewBox="0 0 1200 22" preserveAspectRatio="none"><rect width="1200" height="22" fill="url(#ankaraSm)"/></svg></div>
+
   <!-- marquee: task chips -->
   <div class="marquee-wrap" data-od-id="task-marquee">
-    <div class="container">
-      <div class="marquee-label reveal"><svg width="16" height="16" viewBox="0 0 24 24" style="color:var(--mango)"><use href="#icon-doc"></use></svg>Try asking AbokiWise to…</div>
-    </div>
-    <div class="marquee-track-outer">
-      <div class="marquee-track" id="marqueeTrack">
-        <span class="chip"><span class="chip-dot"></span>Draft the board memo</span>
-        <span class="chip"><span class="chip-dot"></span>Summarize this FIRS circular</span>
-        <span class="chip"><span class="chip-dot"></span>One-page brief from this spreadsheet</span>
-        <span class="chip"><span class="chip-dot"></span>Turn these numbers into 5 slides</span>
-        <span class="chip"><span class="chip-dot"></span>Reply to this vendor email</span>
-        <span class="chip"><span class="chip-dot"></span>Research NAFDAC registration steps</span>
-        <span class="chip"><span class="chip-dot"></span>Compare these two quotes</span>
-        <span class="chip"><span class="chip-dot"></span>Draft a CAC cover letter</span>
-        <span class="chip" aria-hidden="true"><span class="chip-dot"></span>Draft the board memo</span>
-        <span class="chip" aria-hidden="true"><span class="chip-dot"></span>Summarize this FIRS circular</span>
-        <span class="chip" aria-hidden="true"><span class="chip-dot"></span>One-page brief from this spreadsheet</span>
-        <span class="chip" aria-hidden="true"><span class="chip-dot"></span>Turn these numbers into 5 slides</span>
-        <span class="chip" aria-hidden="true"><span class="chip-dot"></span>Reply to this vendor email</span>
-        <span class="chip" aria-hidden="true"><span class="chip-dot"></span>Research NAFDAC registration steps</span>
-        <span class="chip" aria-hidden="true"><span class="chip-dot"></span>Compare these two quotes</span>
-        <span class="chip" aria-hidden="true"><span class="chip-dot"></span>Draft a CAC cover letter</span>
+    <div class="container marquee-in">
+      <span class="marquee-label reveal" data-od-id="marquee-label"><svg class="curl" viewBox="0 0 32 24"><use href="#icon-arrow-curl"></use></svg>Try asking</span>
+      <div class="marquee-track-outer">
+        <div class="marquee-track" id="marqueeTrack">
+          <span class="chip"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-doc"></use></svg></span>Draft the board memo</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-quote"></use></svg></span>Summarize this FIRS circular</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span>Write a presentation outline</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-mail"></use></svg></span>Improve this email</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-table"></use></svg></span>One-page brief from this spreadsheet</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-scale"></use></svg></span>Compare these two quotes</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-doc"></use></svg></span>Draft the board memo</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-quote"></use></svg></span>Summarize this FIRS circular</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span>Write a presentation outline</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-mail"></use></svg></span>Improve this email</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-table"></use></svg></span>One-page brief from this spreadsheet</span>
+          <span class="chip-sep" aria-hidden="true">&bull;</span>
+          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-scale"></use></svg></span>Compare these two quotes</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="ankara ankara--sm" aria-hidden="true"><svg viewBox="0 0 1200 26" preserveAspectRatio="none"><rect width="1200" height="26" fill="url(#ankaraSm)"/></svg></div>
+  <div class="ankara ankara--sm" aria-hidden="true"><svg viewBox="0 0 1200 22" preserveAspectRatio="none"><rect width="1200" height="22" fill="url(#ankaraSm)"/></svg></div>
 
   <!-- 2 ------------------------------------------------- stats -->
-  <section class="stats-band" data-od-id="metrics">
+  <section class="stats-band" id="why" data-od-id="metrics">
     <div class="container stats">
       <div class="stat reveal" data-od-id="metric-models">
         <b><span class="count-up" data-target="400" data-suffix="">0</span><span class="num-accent">+</span></b>
-        <span>AI models under the hood, matched to the task.</span>
+        <span class="stat-cap"><svg viewBox="0 0 24 24"><use href="#icon-people"></use></svg><span>Tasks you can delegate to AbokiWise</span></span>
       </div>
       <div class="stat reveal" style="--d:90ms" data-od-id="metric-hours">
         <b><span class="count-up" data-target="24" data-suffix="">0</span><span class="num-accent">/7</span></b>
-        <span>Always on. Always in Telegram.</span>
+        <span class="stat-cap"><svg viewBox="0 0 24 24"><use href="#icon-clock"></use></svg><span>Always on. Always in Telegram.</span></span>
       </div>
       <div class="stat reveal" style="--d:180ms" data-od-id="metric-price">
         <b><span class="naira-sym">&#8358;</span><span class="count-up" data-target="15" data-suffix="">0</span><span class="num-accent">K</span></b>
-        <span>Starting price. Billed monthly in Naira.</span>
+        <span class="stat-cap"><svg viewBox="0 0 24 24"><use href="#icon-wallet"></use></svg><span>Save hours weekly. Focus on what matters.</span></span>
       </div>
     </div>
   </section>
 
-  <div class="ankara ankara--lg" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><rect width="1200" height="60" fill="url(#ankaraLg)"/></svg></div>
+  <div class="ankara ankara--sm" aria-hidden="true"><svg viewBox="0 0 1200 22" preserveAspectRatio="none"><rect width="1200" height="22" fill="url(#ankaraSm)"/></svg></div>
 
-  <!-- 3 ------------------------------------------------ context -->
-  <section data-od-id="context-band">
-    <div class="container context-grid">
-      <div class="context-copy">
-        <span class="eyebrow reveal" data-od-id="context-eyebrow"><span class="dotpulse" aria-hidden="true"></span>Built for how you work</span>
-        <h2 class="h-sec reveal" style="--d:60ms" data-od-id="context-headline">It already knows how <span class="underline-accent">work works<svg viewBox="0 0 200 16" aria-hidden="true"><use href="#icon-squiggle"></use></svg></span> here.</h2>
-        <p class="body-m reveal" style="--d:120ms">AbokiWise was built with Nigerian professionals in mind, so you spend no time explaining your context. It follows the way local business, government and regulatory work is actually done, and it writes in the register your colleagues expect.</p>
-        <p class="context-note reveal" style="--d:180ms">Under the hood it draws on more than 400 AI models, choosing what suits the task instead of being tied to one provider.</p>
+  <!-- 3 -------------------------------------- feature / smart help -->
+  <section id="how" data-od-id="context-band">
+    <div class="container feature-grid">
+      <div class="feature-copy">
+        <span class="eyebrow-plain reveal" data-od-id="feature-eyebrow">Built for how you work</span>
+        <h2 class="h-sec reveal" style="--d:60ms" data-od-id="feature-headline">Smart help for real Nigerian <span class="underline-accent">work<svg viewBox="0 0 200 16" aria-hidden="true"><use href="#icon-squiggle"></use></svg></span>.</h2>
+        <p class="body-m reveal" style="--d:120ms">AbokiWise understands your context, your language, and your hustle.</p>
+        <a class="textlink reveal" style="--d:170ms" href="#pricing" data-od-id="feature-explore-link">Explore features →</a>
       </div>
-      <div class="feature-panel reveal" style="--d:120ms" data-od-id="context-panel">
-        <span class="fp-num">400<span class="num-accent">+</span></span>
-        <p>AI models working behind one simple Telegram chat.</p>
+      <div class="tiles-grid">
+        <div class="tile reveal" data-od-id="tile-write-better">
+          <span class="tile-icon tile-icon--orange" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-pen"></use></svg></span>
+          <h3>Write Better</h3>
+          <p>From memos to emails, AbokiWise helps you write clearly and professionally.</p>
+        </div>
+        <div class="tile reveal" style="--d:50ms" data-od-id="tile-work-faster">
+          <span class="tile-icon tile-icon--orange" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span>
+          <h3>Work Faster</h3>
+          <p>Summarize, draft, and analyze in seconds &mdash; not hours.</p>
+        </div>
+        <div class="tile reveal" style="--d:100ms" data-od-id="tile-stay-sharp">
+          <span class="tile-icon tile-icon--green" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-shield"></use></svg></span>
+          <h3>Stay Sharp</h3>
+          <p>Get smart suggestions and reminders that keep you ahead.</p>
+        </div>
+        <div class="tile reveal" style="--d:150ms" data-od-id="tile-naija-context">
+          <span class="tile-icon tile-icon--orange" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span>
+          <h3>Naija Context</h3>
+          <p>Powered for Nigerian workplaces, policies, and professionalism.</p>
+        </div>
+        <div class="tile reveal" style="--d:200ms" data-od-id="tile-private-secure">
+          <span class="tile-icon tile-icon--green" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-lock"></use></svg></span>
+          <h3>Private &amp; Secure</h3>
+          <p>Your data stays private and secure &mdash; always.</p>
+        </div>
+        <div class="tile reveal" style="--d:250ms" data-od-id="tile-lives-in-telegram">
+          <span class="tile-icon tile-icon--orange" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-plane"></use></svg></span>
+          <h3>Lives in Telegram</h3>
+          <p>No new apps. No stress. Just open Telegram and chat.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 4 --------------------------------------------- how it works -->
-  <section id="how" data-od-id="how-it-works">
+  <!-- 4 ------------------------------------------------- pricing -->
+  <section id="pricing" class="pricing-band" data-od-id="pricing">
     <div class="container">
-      <div class="steps-head">
-        <span class="eyebrow reveal" data-od-id="how-eyebrow"><span class="dotpulse" aria-hidden="true"></span>Getting started</span>
-        <h2 class="h-sec reveal" style="--d:60ms" data-od-id="how-headline">Set up in about five minutes.</h2>
-        <p class="body-m reveal" style="--d:100ms">Everything happens in the Telegram app you already have open.</p>
-      </div>
-      <div class="steps">
-        <div class="step reveal" data-od-id="step-message">
-          <span class="step-n">1</span>
-          <h3>Message the bot</h3>
-          <p>Open @Abokiwise_bot on Telegram and say hello. Try a live demo straight away, before you decide anything.</p>
+      <div class="price-card reveal">
+        <div class="price-amt" data-od-id="price-amount">
+          <span class="naira-sym" style="font-size:0.6em">&#8358;</span>15,000
+          <span class="per">per month &middot; Naira via Paystack</span>
         </div>
-        <div class="step reveal" style="--d:90ms" data-od-id="step-tell-us">
-          <span class="step-n">2</span>
-          <h3>Tell us about you</h3>
-          <p>A few short questions about your role and your work. The bot walks you through registration and payment in Naira.</p>
+        <div class="price-mid">
+          <h3 data-od-id="pricing-headline">First week free.</h3>
+          <p>No card required to try it. Cancel any time, from the chat.</p>
         </div>
-        <div class="step reveal" style="--d:180ms" data-od-id="step-start">
-          <span class="step-n">3</span>
-          <h3>Start chatting</h3>
-          <p>That is it. Ask for research, send a document, request a report or a deck. Any hour of the day.</p>
+        <div class="price-cta">
+          <a class="btn btn-primary" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener" data-od-id="pricing-cta">
+            <svg class="tg" viewBox="0 0 24 24" fill="#fff"><use href="#icon-plane"></use></svg>
+            Chat with AbokiWise
+          </a>
         </div>
       </div>
-      <p class="steps-tail reveal" data-od-id="how-note">Your first week is free. No card details, and you can stop whenever you like.</p>
     </div>
   </section>
 
-  <div class="ankara ankara--sm" aria-hidden="true"><svg viewBox="0 0 1200 26" preserveAspectRatio="none"><rect width="1200" height="26" fill="url(#ankaraSm)"/></svg></div>
-
-  <!-- 5 ---------------------------------------------- comparison -->
-  <section id="why" data-od-id="why-abokiwise">
+  <!-- 5 ----------------------------------------------------- faq -->
+  <section id="faq" class="faq-band" data-od-id="faq">
     <div class="container">
-      <span class="eyebrow reveal" data-od-id="why-eyebrow"><span class="dotpulse" aria-hidden="true"></span>The honest comparison</span>
-      <h2 class="h-sec reveal" style="--d:60ms" data-od-id="why-headline">Why AbokiWise and not ChatGPT.</h2>
-      <p class="body-m reveal" style="--d:100ms">Both are useful. One of them was built for your day.</p>
-
-      <div class="bento">
-        <article class="vs-card col-8 reveal" data-od-id="vs-telegram-native">
-          <div class="vs-a-in">
-            <div>
-              <span class="vs-topic">Where it lives</span>
-              <p class="claim" style="margin-top:12px">It lives in Telegram, beside the chats you are already in. Nothing to install, no browser tab, no separate login to remember.</p>
-              <p class="other">With ChatGPT you open an app or a browser and sign in again.</p>
-            </div>
-            <div class="vs-icon-box" aria-hidden="true" data-od-id="vs-icon">
-              <svg viewBox="0 0 24 24"><use href="#icon-plane"></use></svg>
-            </div>
-          </div>
-        </article>
-
-        <article class="vs-card col-4 vs-b reveal" style="--d:70ms" data-od-id="vs-naira-billing">
-          <span class="vs-topic">How you pay</span>
-          <p class="claim">Naira billing through Paystack. Card, bank transfer or USSD, whichever you actually use.</p>
-          <p class="other">With ChatGPT you need a dollar card that clears.</p>
-        </article>
-
-        <article class="vs-card col-4 reveal" style="--d:130ms" data-od-id="vs-models">
-          <span class="vs-topic">What is inside</span>
-          <p class="claim">More than 400 models, matched to the task.</p>
-          <p class="other">With ChatGPT you get one provider's models.</p>
-        </article>
-
-        <article class="vs-card col-4 reveal" style="--d:190ms" data-od-id="vs-context">
-          <span class="vs-topic">What it understands</span>
-          <p class="claim">Nigerian business, government and professional context, without the long explanation.</p>
-          <p class="other">With ChatGPT you supply that background yourself, every time.</p>
-        </article>
-
-        <article class="vs-card col-4 reveal" style="--d:250ms" data-od-id="vs-managed">
-          <span class="vs-topic">Who sets it up</span>
-          <p class="claim">We do. Configuration, tuning and a real person to ask when something feels off.</p>
-          <p class="other">With ChatGPT the setup and the troubleshooting are yours.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6 ------------------------------------------------- pricing -->
-  <section id="pricing" data-od-id="pricing">
-    <div class="container">
-      <div class="price-wrap reveal">
-        <div class="price-figure">
-          <span class="amt" data-od-id="price-amount"><span class="naira-sym" style="font-size:0.55em">&#8358;</span>15,000<span class="accent">.</span></span>
-          <span class="per">per month, starting price. Billed in Naira through Paystack.</span>
-        </div>
-        <div>
-          <h2 style="font-size:24px" data-od-id="pricing-headline">Try the first week free.</h2>
-          <ul class="price-list">
-            <li><i>Trial</i> Seven days, no credit card asked for.</li>
-            <li><i>Payment</i> Card, bank transfer or USSD, in Naira.</li>
-            <li><i>Setup</i> Fully managed. We configure it for you.</li>
-            <li><i>Leaving</i> Cancel any time, from the same chat.</li>
-          </ul>
-          <div class="price-cta">
-            <a class="btn btn-forest" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener" data-od-id="pricing-cta">
-              <svg class="tg" viewBox="0 0 24 24" fill="#fff"><use href="#icon-plane"></use></svg>
-              Message @Abokiwise_bot
-            </a>
-            <span class="small">The bot handles registration and payment.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7 ----------------------------------------------------- faq -->
-  <section id="faq" data-od-id="faq">
-    <div class="container faq-grid">
-      <div>
+      <div class="faq-head">
         <span class="eyebrow reveal" data-od-id="faq-eyebrow"><span class="dotpulse" aria-hidden="true"></span>Fair questions</span>
-        <h2 class="h-sec reveal" style="--d:60ms;margin-top:16px" data-od-id="faq-headline">Quiet answers to fair questions.</h2>
+        <h2 class="h-sec reveal" style="--d:60ms;text-align:center" data-od-id="faq-headline">Quiet answers to fair questions.</h2>
       </div>
       <div class="faq-list">
         <details class="reveal" data-od-id="faq-install">
@@ -1054,17 +969,17 @@ footer { padding-block: var(--space-12); border-top: 1px solid var(--line); back
     </div>
   </section>
 
-  <!-- 8 ----------------------------------------------- final cta -->
+  <!-- 6 ----------------------------------------------- final cta -->
   <section class="final" data-od-id="final-cta">
     <div class="container final-in">
       <div class="final-copy">
         <h2 class="reveal" data-od-id="final-headline">Ready to work <span class="accent">wiser?</span></h2>
-        <p class="reveal" style="--d:70ms">One message starts the free week. The bot will show you a live demo first, so you can judge it before you decide anything.</p>
+        <p class="reveal" style="--d:70ms">One message starts the free week. The bot shows you a live demo first, so you can judge it before you decide anything.</p>
       </div>
       <div class="final-actions">
-        <a class="btn btn-primary reveal" style="--d:140ms" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener" data-od-id="final-cta-button">
-          <svg class="tg" viewBox="0 0 24 24" fill="#fff"><use href="#icon-plane"></use></svg>
-          Message @Abokiwise_bot
+        <a class="btn btn-onlight reveal" style="--d:140ms" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener" data-od-id="final-cta-button">
+          <svg class="tg" viewBox="0 0 24 24" fill="currentColor"><use href="#icon-plane"></use></svg>
+          Start on Telegram
         </a>
         <span class="handle reveal" style="--d:200ms">t.me/Abokiwise_bot</span>
       </div>
@@ -1164,10 +1079,10 @@ footer { padding-block: var(--space-12); border-top: 1px solid var(--line); back
   var heroRoleInput = document.getElementById('heroRoleInput');
 
   var SCRIPT = [
-    "Hey! I'm AbokiWise 👋",
-    "I live right inside your Telegram. Research, reports, analysis, drafts — I handle the work that eats your day.",
+    "Hey! I'm AbokiWise \uD83D\uDC4B",
+    "I live right inside your Telegram. Research, reports, analysis, drafts \u2014 I handle the work that eats your day.",
     "400+ AI models. 24/7. No setup.",
-    "Enough about me — what do YOU do?"
+    "Enough about me \u2014 what do YOU do?"
   ];
 
   function makeTimeLabel(offsetMinutes) {
