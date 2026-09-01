@@ -619,23 +619,22 @@ h2.h-sec {
 .tier-card {
   position: relative;
   background: var(--white);
-  border: 1px solid rgba(25,21,9,0.09);
+  border: 2px solid var(--forest);
   border-radius: var(--radius-lg);
   padding: 26px 24px;
   display: flex;
   flex-direction: column;
 }
 .tier-card--pop {
-  border: 2px solid #2E7D46;
-  box-shadow: 0 14px 34px rgba(46,125,70,0.16);
+  box-shadow: 0 14px 34px rgba(10,36,23,0.16);
 }
 .tier-flag {
   position: absolute;
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: #2E7D46;
-  color: #FDFBF3;
+  background: var(--forest);
+  color: var(--white);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1064,7 +1063,10 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
             <li>Standard support (48hr)</li>
             <li>Isolated Hermes profile</li>
           </ul>
-          <a class="btn btn-ghost tier-btn" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener">Choose Standard</a>
+          <a class="btn btn-forest tier-btn" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener">
+            <svg class="tg" viewBox="0 0 24 24" fill="#fff"><use href="#icon-plane"></use></svg>
+            Choose Standard
+          </a>
         </div>
         <div class="tier-card tier-card--pop reveal" style="--d:110ms">
           <span class="tier-flag">Most popular</span>
@@ -1080,7 +1082,7 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
             <li>Dashboard access</li>
             <li>Custom skills</li>
           </ul>
-          <a class="btn btn-primary tier-btn" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener">
+          <a class="btn btn-forest tier-btn" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener">
             <svg class="tg" viewBox="0 0 24 24" fill="#fff"><use href="#icon-plane"></use></svg>
             Choose Standard+
           </a>
@@ -1099,7 +1101,10 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
             <li>Custom skills + knowledge base</li>
             <li>Up to 5 team members</li>
           </ul>
-          <a class="btn btn-ghost tier-btn" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener">Choose Premium</a>
+          <a class="btn btn-forest tier-btn" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener">
+            <svg class="tg" viewBox="0 0 24 24" fill="#fff"><use href="#icon-plane"></use></svg>
+            Choose Premium
+          </a>
         </div>
       </div>
     </div>
