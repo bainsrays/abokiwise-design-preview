@@ -267,14 +267,17 @@ h2.h-sec {
 .ankara svg { display: block; width: 100%; }
 .ankara--sm { height: 22px; }
 
-/* ---------- hero ---------- */
-.hero { padding-top: 40px; padding-bottom: 44px; overflow: visible; }
+/* ---------- hero (fills the viewport; chat phone stretches full height) ---------- */
+.hero { padding-top: 24px; padding-bottom: 36px; overflow: visible; }
 .hero-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(24px, 4.6vw, 56px);
-  align-items: start;
+  align-items: stretch;
+  min-height: calc(100vh - 132px);
+  min-height: calc(100svh - 132px);
 }
+.hero-copy { align-self: center; }
 .hero-copy > * + * { margin-top: var(--space-4); }
 .h-hero {
   font-size: clamp(42px, 6.6vw, 84px);
@@ -296,22 +299,29 @@ h2.h-sec {
 }
 .hero-trust .sep { color: var(--line); }
 
-/* ---------- chat card (hero centerpiece) ---------- */
+/* ---------- chat phone (hero centerpiece, Telegram-texting style) ---------- */
 .chat-shell {
   position: relative;
   padding-top: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .chat {
-  background: var(--panel);
-  border-radius: var(--radius-lg);
+  background: var(--white);
+  border-radius: 28px;
   box-shadow: var(--elev-raised), var(--elev-ring);
   overflow: hidden;
-  max-width: 400px;
+  max-width: 430px;
   margin-inline: auto;
   width: 100%;
-  transform: rotate(2deg);
   border: 1px solid rgba(25,21,9,0.06);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 560px;
+  max-height: 800px;
 }
 .chat-sparks {
   position: absolute;
@@ -327,12 +337,13 @@ h2.h-sec {
   align-items: center;
   gap: 9px;
   padding: 13px 16px;
-  border-bottom: 1px solid var(--line-soft);
+  border-bottom: 1px solid rgba(25,21,9,0.07);
   background: var(--white);
+  flex: none;
 }
-.chat-head .back { color: var(--muted); font-size: 17px; line-height: 1; flex: none; }
+.chat-head .back { color: var(--ink-2); font-size: 19px; line-height: 1; flex: none; }
 .chat-unread {
-  background: var(--forest);
+  background: #2E7D46;
   color: var(--white);
   font-size: 10.5px;
   font-weight: 700;
@@ -354,32 +365,73 @@ h2.h-sec {
 .chat-status { font-size: 11.5px; color: var(--muted); letter-spacing: 0.01em; }
 .chat-head .kebab { margin-left: auto; color: var(--muted); font-size: 17px; letter-spacing: 1px; }
 .chat-body {
-  padding: 16px 14px 12px;
+  padding: 18px 14px 14px;
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  background: #D9E4C8;
-  min-height: 280px;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  background-color: #D3E3C4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%231E3A1C' stroke-opacity='0.055' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='26' cy='32' r='9'/%3E%3Cpath d='M96 18l8 8m0-8l-8 8'/%3E%3Crect x='104' y='96' width='16' height='16' rx='4'/%3E%3Cpath d='M28 108c5-8 13-8 18 0'/%3E%3Ccircle cx='75' cy='68' r='5'/%3E%3Cpath d='M130 52c6 0 6 8 0 8'/%3E%3C/g%3E%3C/svg%3E");
 }
-.msg-row { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-.bub-bot {
-  max-width: 88%;
-  padding: 10px 14px;
-  font-size: 14px;
-  line-height: 1.46;
+.msg-row { display: flex; flex-direction: column; align-items: flex-start; }
+.msg-row--user { align-items: flex-end; }
+.bub {
+  position: relative;
+  max-width: 86%;
+  padding: 9px 13px 21px;
+  font-size: 13.5px;
+  line-height: 1.5;
   border-radius: 15px;
-  border-bottom-left-radius: 5px;
-  background: var(--white);
   color: var(--ink);
-  box-shadow: 0 2px 6px rgba(15,42,29,0.08);
+  box-shadow: 0 1px 2px rgba(15,42,29,0.13);
   opacity: 0;
   transform: scale(0.86) translateY(10px);
-  transform-origin: left bottom;
 }
-.bub-bot.pop { animation: bubblePop 420ms var(--ease-spring) forwards; }
+.bub-bot { background: var(--white); border-bottom-left-radius: 5px; transform-origin: left bottom; }
+.bub-user { background: #E9F7D3; border-bottom-right-radius: 5px; transform-origin: right bottom; }
+.bub.pop { animation: bubblePop 420ms var(--ease-spring) forwards; }
 @keyframes bubblePop { to { opacity: 1; transform: scale(1) translateY(0); } }
-.msg-time { font-size: 10.5px; color: rgba(25,21,9,0.42); padding-left: 4px; opacity: 0; transition: opacity 200ms; }
-.msg-time.show { opacity: 1; }
+.bub-name { display: block; font-weight: 700; font-size: 13px; color: #2E7D46; margin-bottom: 3px; }
+.bub-time {
+  position: absolute;
+  right: 11px;
+  bottom: 5px;
+  font-size: 10px;
+  color: rgba(25,21,9,0.42);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  line-height: 1;
+}
+.bub-time .ticks { width: 14px; height: 9px; color: #58A05C; }
+.memo { border-top: 1px solid rgba(25,21,9,0.12); margin-top: 8px; padding-top: 8px; font-size: 12.5px; line-height: 1.55; }
+.memo p { margin: 0; }
+.memo .gap { margin-top: 9px; }
+.chat-actions { display: flex; align-items: center; gap: 8px; margin-top: 2px; opacity: 0; transition: opacity 420ms var(--ease-standard); }
+.chat-actions.show { opacity: 1; }
+.act-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--white);
+  border-radius: var(--radius-pill);
+  padding: 9px 15px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(15,42,29,0.13);
+}
+.act-circ {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 1px 2px rgba(15,42,29,0.13);
+}
+.act-circ svg { width: 15px; height: 15px; color: var(--ink-2); }
 .typing-row { display: none; align-self: flex-start; }
 .typing-row.show { display: flex; }
 .typing-bub {
@@ -390,7 +442,7 @@ h2.h-sec {
   display: inline-flex;
   gap: 4px;
   align-items: center;
-  box-shadow: 0 2px 6px rgba(15,42,29,0.08);
+  box-shadow: 0 1px 2px rgba(15,42,29,0.13);
 }
 .typing-bub span {
   width: 6px; height: 6px; border-radius: 50%;
@@ -401,33 +453,39 @@ h2.h-sec {
 .typing-bub span:nth-child(3) { animation-delay: 240ms; }
 @keyframes bounceDot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
 .chat-foot {
-  padding: 13px 15px 16px;
+  padding: 10px 12px 14px;
   background: var(--white);
-  border-top: 1px solid var(--line-soft);
+  border-top: 1px solid rgba(25,21,9,0.06);
+  flex: none;
 }
-.chat-form { opacity: 0; max-height: 0; overflow: hidden; transition: opacity 420ms var(--ease-standard); }
-.chat-form.show { opacity: 1; max-height: 600px; }
-.chat-form label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--forest);
-  margin-bottom: 8px;
+.composer { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.comp-menu {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--forest);
+  display: grid;
+  place-items: center;
+  flex: none;
+  transition: background var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
 }
-.chat-form input[type="text"] {
-  width: 100%;
-  padding: 12px 14px;
+.comp-menu svg { width: 18px; height: 18px; }
+.composer:hover .comp-menu { background: var(--forest-2); transform: scale(1.05); }
+.comp-field {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid rgba(25,21,9,0.14);
   border-radius: var(--radius-pill);
-  border: 1.5px solid var(--line);
-  background: var(--cream);
-  font-family: var(--font-body);
+  padding: 0 14px;
+  background: var(--white);
+  color: var(--muted);
   font-size: 13.5px;
-  color: var(--ink);
-  margin-bottom: 11px;
 }
-.chat-form input[type="text"]::placeholder { color: var(--muted); }
-.chat-form .btn { width: 100%; }
-.chat-reassure { margin-top: 9px; font-size: 11.5px; color: var(--muted); line-height: 1.5; text-align: center; }
+.comp-field .ph { flex: 1 1 auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.comp-ic { width: 19px; height: 19px; color: var(--muted); flex: none; }
 
 /* ---------- marquee ---------- */
 .marquee-wrap { padding-block: 20px; overflow: hidden; background: var(--cream); }
@@ -652,9 +710,9 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
   .container { padding-inline: var(--gutter-tablet); }
   section { padding-block: var(--section-y-tablet); }
   .hero { padding-top: var(--space-8); padding-bottom: 32px; }
-  .hero-grid { grid-template-columns: 1fr; }
-  .chat-shell { max-width: 440px; margin-inline: auto; }
-  .chat { transform: none; }
+  .hero-grid { grid-template-columns: 1fr; min-height: 0; }
+  .chat-shell { max-width: 480px; margin-inline: auto; width: 100%; }
+  .chat { height: 72vh; height: 72svh; min-height: 520px; }
   .feature-grid { grid-template-columns: 1fr; }
   .tiles-grid { grid-template-columns: repeat(3, 1fr); }
   .stats { grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
@@ -676,8 +734,9 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
   .hero-cta .btn { width: 100%; }
   .hero-cta .textlink { width: auto; margin-inline: auto; justify-content: center; }
   .hero-trust { display: none; }
-  .chat { max-width: none; }
-  .chat-body { min-height: 240px; }
+  .chat-shell { max-width: none; }
+  .chat { max-width: none; height: calc(100vh - 112px); height: calc(100svh - 112px); min-height: 500px; max-height: none; }
+  .bub { max-width: 92%; }
   .marquee-in { flex-wrap: wrap; }
   .marquee-label { width: 100%; }
   .stats { grid-template-columns: 1fr; gap: var(--space-6); }
@@ -709,7 +768,8 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
     transition: none !important;
   }
   html:not(.motion-forced) .marquee-track { animation: none !important; }
-  html:not(.motion-forced) .bub-bot { animation: none !important; opacity: 1 !important; transform: none !important; }
+  html:not(.motion-forced) .bub { animation: none !important; opacity: 1 !important; transform: none !important; }
+  html:not(.motion-forced) .chat-actions { opacity: 1 !important; }
   html:not(.motion-forced) .btn:hover, html:not(.motion-forced) .tile:hover {
     transform: none !important;
   }
@@ -797,7 +857,7 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
           </svg>
           <div class="chat-head">
             <span class="back" aria-hidden="true">‹</span>
-            <span class="chat-unread" aria-hidden="true">4</span>
+            <span class="chat-unread" aria-hidden="true">12</span>
             <span class="chat-avatar" aria-hidden="true"><img src="assets/logo-mark.png" alt=""></span>
             <span>
               <span class="chat-who-row"><span class="chat-who">AbokiWise</span><svg class="chat-verified" viewBox="0 0 24 24"><use href="#icon-check"></use></svg></span>
@@ -806,17 +866,14 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
             <span class="kebab" aria-hidden="true">⋮</span>
           </div>
           <div class="chat-body" id="chatBody">
-            <!-- messages injected by JS from the SCRIPT array below; kept empty here for reduced-motion fallback, which is populated on load -->
+            <!-- phone-texting conversation injected by JS (SCRIPTED CHAT below); populated instantly under reduced motion -->
           </div>
           <div class="chat-foot">
-            <!-- BACKEND TODO: capture the value of #heroRoleInput and pass it as a start payload / prefilled first message
-                 to the Telegram bot deep link once the intake flow is wired up. Right now it just opens the public bot link. -->
-            <form class="chat-form" id="chatForm">
-              <label for="heroRoleInput">What do you do? One sentence is enough.</label>
-              <input type="text" id="heroRoleInput" placeholder="e.g. I'm a procurement officer at a federal agency" autocomplete="off">
-              <button type="submit" class="btn btn-primary" id="chatFormSubmit">Start chatting →</button>
-              <p class="chat-reassure">No bot to create. No password. You'll be chatting on Telegram in seconds.</p>
-            </form>
+            <a class="composer" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener" aria-label="Message AbokiWise on Telegram" data-od-id="hero-chat-composer">
+              <span class="comp-menu" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+              <span class="comp-field"><span class="ph">Message AbokiWise&hellip;</span><svg class="comp-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 1 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.82-2.83l8.49-8.48"/></svg></span>
+              <svg class="comp-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5M9 21.5h6"/></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -1079,47 +1136,65 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
     countEls.forEach(function (el) { runCountUp(el); });
   }
 
-  /* ---------- hero chat: scripted intro conversation ---------- */
+  /* ---------- SCRIPTED CHAT: phone-texting conversation (matches the Direction A mockup) ---------- */
   var chatBody = document.getElementById('chatBody');
-  var chatForm = document.getElementById('chatForm');
-  var heroRoleInput = document.getElementById('heroRoleInput');
 
-  var SCRIPT = [
-    "Hey! I'm AbokiWise \uD83D\uDC4B",
-    "I live right inside your Telegram. Research, reports, analysis, drafts \u2014 I handle the work that eats your day.",
-    "400+ AI models. 24/7. No setup.",
-    "Enough about me \u2014 what do YOU do?"
-  ];
-
-  function makeTimeLabel(offsetMinutes) {
+  function timeLabel() {
     var d = new Date();
-    d.setMinutes(d.getMinutes() + offsetMinutes);
     var h = d.getHours();
     var m = d.getMinutes();
     var ampm = h >= 12 ? 'PM' : 'AM';
     h = h % 12; if (h === 0) { h = 12; }
-    var mm = m < 10 ? '0' + m : m;
-    return h + ':' + mm + ' ' + ampm;
+    return h + ':' + (m < 10 ? '0' + m : m) + ' ' + ampm;
   }
 
-  function appendMessage(text, minuteOffset) {
+  function dateLabel() {
+    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var d = new Date();
+    return d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  var TICKS = '<svg class="ticks" viewBox="0 0 18 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6l3.2 3.2L10 3.5"/><path d="M8 6l3.2 3.2L17 3.5"/></svg>';
+
+  function userRow() {
+    var row = document.createElement('div');
+    row.className = 'msg-row msg-row--user';
+    row.innerHTML = '<div class="bub bub-user">Draft a concise board memo seeking approval for the Q2 budget review.<span class="bub-time">' + timeLabel() + TICKS + '</span></div>';
+    chatBody.appendChild(row);
+    return row.firstChild;
+  }
+
+  function botRow() {
     var row = document.createElement('div');
     row.className = 'msg-row';
-    var bub = document.createElement('p');
-    bub.className = 'bub-bot';
-    bub.textContent = text;
-    var time = document.createElement('span');
-    time.className = 'msg-time';
-    time.textContent = makeTimeLabel(minuteOffset);
-    row.appendChild(bub);
-    row.appendChild(time);
+    row.innerHTML = '<div class="bub bub-bot"><span class="bub-name">AbokiWise</span>' +
+      'Sure thing! Here\u2019s a concise board memo for the Q2 budget review.' +
+      '<div class="memo">' +
+        '<p><b>To:</b> The Board of Directors</p>' +
+        '<p><b>From:</b> [Your Name / Department]</p>' +
+        '<p><b>Date:</b> ' + dateLabel() + '</p>' +
+        '<p><b>Subject:</b> Request for Approval of Q2 Budget Review</p>' +
+        '<p class="gap">Dear Board Members,</p>' +
+        '<p class="gap">I am writing to kindly request your approval for the proposed review of the Q2 budget\u2026</p>' +
+      '</div>' +
+      '<span class="bub-time">' + timeLabel() + '</span></div>';
     chatBody.appendChild(row);
-    // trigger pop animation on next frame so the transition actually runs
+    return row.firstChild;
+  }
+
+  function actionsRow() {
+    var row = document.createElement('div');
+    row.className = 'chat-actions';
+    row.innerHTML = '<span class="act-pill">\uD83D\uDC4D Helpful</span>' +
+      '<span class="act-pill">\uD83D\uDC4E Not helpful</span>' +
+      '<span class="act-circ" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span>';
+    chatBody.appendChild(row);
+    return row;
+  }
+
+  function pop(bub) {
     requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        bub.classList.add('pop');
-        time.classList.add('show');
-      });
+      requestAnimationFrame(function () { bub.classList.add('pop'); });
     });
   }
 
@@ -1132,54 +1207,33 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
   }
 
   function runScriptedChat() {
-    var i = 0;
-    function next() {
-      if (i >= SCRIPT.length) {
-        chatForm.classList.add('show');
-        return;
-      }
-      var typingRow = appendTyping();
+    setTimeout(function () {
+      pop(userRow());
       setTimeout(function () {
-        typingRow.remove();
-        appendMessage(SCRIPT[i], i);
-        i++;
-        setTimeout(next, 480);
-      }, 900);
-    }
-    next();
+        var typingRow = appendTyping();
+        setTimeout(function () {
+          typingRow.remove();
+          pop(botRow());
+          setTimeout(function () { actionsRow().classList.add('show'); }, 520);
+        }, 1400);
+      }, 650);
+    }, 450);
   }
 
   function showChatInstantly() {
-    SCRIPT.forEach(function (text, idx) {
-      var row = document.createElement('div');
-      row.className = 'msg-row';
-      var bub = document.createElement('p');
-      bub.className = 'bub-bot pop';
+    [userRow(), botRow()].forEach(function (bub) {
+      bub.classList.add('pop');
       bub.style.opacity = '1';
       bub.style.transform = 'none';
-      bub.textContent = text;
-      var time = document.createElement('span');
-      time.className = 'msg-time show';
-      time.textContent = makeTimeLabel(idx);
-      row.appendChild(bub);
-      row.appendChild(time);
-      chatBody.appendChild(row);
     });
-    chatForm.classList.add('show');
+    actionsRow().classList.add('show');
   }
 
   if (reduceMotion) {
     showChatInstantly();
   } else {
-    setTimeout(runScriptedChat, 500);
+    runScriptedChat();
   }
-
-  chatForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    // BACKEND TODO: heroRoleInput.value currently unused beyond this point —
-    // wire it into the bot's onboarding payload when that integration exists.
-    window.open('https://t.me/Abokiwise_bot', '_blank', 'noopener');
-  });
 })();
 </script>
 
