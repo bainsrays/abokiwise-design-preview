@@ -390,6 +390,24 @@ h2.h-sec {
   transform: scale(0.86) translateY(10px);
 }
 .bub-bot { background: var(--white); border-bottom-left-radius: 5px; transform-origin: left bottom; }
+.bub-ask {
+  background: #2E7D46;
+  color: #FDFBF3;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 14px 18px 22px 16px;
+  box-shadow: 0 4px 14px rgba(46,125,70,0.35);
+}
+.bub-ask::before { background: #2E7D46 !important; }
+.bub-ask .ask-sub {
+  display: block;
+  margin-top: 5px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(253,251,243,0.85);
+}
+.bub-ask .bub-time { color: rgba(253,251,243,0.65); }
 .bub-bot::before {
   content: "";
   position: absolute;
@@ -1145,17 +1163,24 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
     "Hey! I'm AbokiWise \uD83D\uDC4B",
     "I live right inside your Telegram \u2014 no bot to create, no password, no setup. You'll be chatting in seconds.",
     "Research, reports, analysis, drafts, presentations \u2014 I handle the work that eats your day. 400+ AI models, on duty 24/7.",
-    "Enough about me \u2014 what do you do? Tell me and I'll show you exactly how I can make your work lighter \uD83D\uDE0A"
+    { ask: true, text: "So \u2014 what do you do? \uD83D\uDCBC", sub: "Tell me your work and I'll show you exactly how I make it lighter." }
   ];
 
   function scrollChat() { chatBody.scrollTop = chatBody.scrollHeight; }
 
-  function botRow(text) {
+  function botRow(item) {
+    var isAsk = (typeof item === 'object');
     var row = document.createElement('div');
     row.className = 'msg-row';
     var bub = document.createElement('div');
-    bub.className = 'bub bub-bot';
-    bub.textContent = text;
+    bub.className = isAsk ? 'bub bub-bot bub-ask' : 'bub bub-bot';
+    bub.textContent = isAsk ? item.text : item;
+    if (isAsk && item.sub) {
+      var sub = document.createElement('span');
+      sub.className = 'ask-sub';
+      sub.textContent = item.sub;
+      bub.appendChild(sub);
+    }
     var time = document.createElement('span');
     time.className = 'bub-time';
     time.textContent = timeLabel();
@@ -1197,8 +1222,8 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
   }
 
   function showChatInstantly() {
-    SCRIPT.forEach(function (text) {
-      var bub = botRow(text);
+    SCRIPT.forEach(function (item) {
+      var bub = botRow(item);
       bub.classList.add('pop');
       bub.style.opacity = '1';
       bub.style.transform = 'none';
