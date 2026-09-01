@@ -390,10 +390,18 @@ h2.h-sec {
   transform: scale(0.86) translateY(10px);
 }
 .bub-bot { background: var(--white); border-bottom-left-radius: 5px; transform-origin: left bottom; }
-.bub-user { background: #E9F7D3; border-bottom-right-radius: 5px; transform-origin: right bottom; }
+.bub-bot::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  bottom: 0;
+  width: 10px;
+  height: 11px;
+  background: var(--white);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
 .bub.pop { animation: bubblePop 420ms var(--ease-spring) forwards; }
 @keyframes bubblePop { to { opacity: 1; transform: scale(1) translateY(0); } }
-.bub-name { display: block; font-weight: 700; font-size: 13px; color: #2E7D46; margin-bottom: 3px; }
 .bub-time {
   position: absolute;
   right: 11px;
@@ -405,13 +413,9 @@ h2.h-sec {
   gap: 3px;
   line-height: 1;
 }
-.bub-time .ticks { width: 14px; height: 9px; color: #58A05C; }
-.memo { border-top: 1px solid rgba(25,21,9,0.12); margin-top: 8px; padding-top: 8px; font-size: 12.5px; line-height: 1.55; }
-.memo p { margin: 0; }
-.memo .gap { margin-top: 9px; }
-.chat-actions { display: flex; align-items: center; gap: 8px; margin-top: 2px; opacity: 0; transition: opacity 420ms var(--ease-standard); }
-.chat-actions.show { opacity: 1; }
-.act-pill {
+.chat-suggest { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; opacity: 0; transition: opacity 420ms var(--ease-standard); }
+.chat-suggest.show { opacity: 1; }
+.sug-pill {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -421,17 +425,11 @@ h2.h-sec {
   font-size: 12.5px;
   font-weight: 600;
   color: var(--ink);
+  text-decoration: none;
   box-shadow: 0 1px 2px rgba(15,42,29,0.13);
+  transition: transform var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard);
 }
-.act-circ {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: var(--white);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 1px 2px rgba(15,42,29,0.13);
-}
-.act-circ svg { width: 15px; height: 15px; color: var(--ink-2); }
+.sug-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(15,42,29,0.18); }
 .typing-row { display: none; align-self: flex-start; }
 .typing-row.show { display: flex; }
 .typing-bub {
@@ -485,6 +483,17 @@ h2.h-sec {
   font-size: 13.5px;
 }
 .comp-field .ph { flex: 1 1 auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.comp-field .ph::after {
+  content: "";
+  display: inline-block;
+  width: 1.5px;
+  height: 13px;
+  background: var(--muted);
+  margin-left: 2px;
+  vertical-align: -2px;
+  animation: blinkCaret 1.05s steps(1) infinite;
+}
+@keyframes blinkCaret { 50% { opacity: 0; } }
 .comp-ic { width: 19px; height: 19px; color: var(--muted); flex: none; }
 
 /* ---------- marquee ---------- */
@@ -871,7 +880,7 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
           <div class="chat-foot">
             <a class="composer" href="https://t.me/Abokiwise_bot" target="_blank" rel="noopener" aria-label="Message AbokiWise on Telegram" data-od-id="hero-chat-composer">
               <span class="comp-menu" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
-              <span class="comp-field"><span class="ph">Message AbokiWise&hellip;</span><svg class="comp-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 1 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.82-2.83l8.49-8.48"/></svg></span>
+              <span class="comp-field"><span class="ph" id="compPh">Message AbokiWise&hellip;</span></span>
               <svg class="comp-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5M9 21.5h6"/></svg>
             </a>
           </div>
@@ -1136,7 +1145,7 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
     countEls.forEach(function (el) { runCountUp(el); });
   }
 
-  /* ---------- SCRIPTED CHAT: phone-texting conversation (matches the Direction A mockup) ---------- */
+  /* ---------- SCRIPTED CHAT: AbokiWise introduces itself (Telegram-style) ---------- */
   var chatBody = document.getElementById('chatBody');
 
   function timeLabel() {
@@ -1148,47 +1157,56 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
     return h + ':' + (m < 10 ? '0' + m : m) + ' ' + ampm;
   }
 
-  function dateLabel() {
-    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var d = new Date();
-    return d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear();
-  }
+  var SCRIPT = [
+    "Hey! I'm AbokiWise \uD83D\uDC4B",
+    "I live right inside your Telegram \u2014 no bot to create, no password, no setup. You'll be chatting in seconds.",
+    "Research, reports, analysis, drafts, presentations \u2014 I handle the work that eats your day. 400+ AI models, on duty 24/7.",
+    "Enough about me \u2014 what's on your desk today? Tap a suggestion below \uD83D\uDC47"
+  ];
 
-  var TICKS = '<svg class="ticks" viewBox="0 0 18 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6l3.2 3.2L10 3.5"/><path d="M8 6l3.2 3.2L17 3.5"/></svg>';
+  var SUGGESTIONS = [
+    '\u270D\uFE0F Draft the board memo',
+    '\uD83D\uDCC4 Summarize this FIRS circular',
+    '\uD83D\uDCCA Outline my presentation',
+    '\u2709\uFE0F Improve this email',
+    '\uD83E\uDDFE Brief me on this spreadsheet',
+    '\u2696\uFE0F Compare two supplier quotes'
+  ];
 
-  function userRow() {
-    var row = document.createElement('div');
-    row.className = 'msg-row msg-row--user';
-    row.innerHTML = '<div class="bub bub-user">Draft a concise board memo seeking approval for the Q2 budget review.<span class="bub-time">' + timeLabel() + TICKS + '</span></div>';
-    chatBody.appendChild(row);
-    return row.firstChild;
-  }
+  function scrollChat() { chatBody.scrollTop = chatBody.scrollHeight; }
 
-  function botRow() {
+  function botRow(text) {
     var row = document.createElement('div');
     row.className = 'msg-row';
-    row.innerHTML = '<div class="bub bub-bot"><span class="bub-name">AbokiWise</span>' +
-      'Sure thing! Here\u2019s a concise board memo for the Q2 budget review.' +
-      '<div class="memo">' +
-        '<p><b>To:</b> The Board of Directors</p>' +
-        '<p><b>From:</b> [Your Name / Department]</p>' +
-        '<p><b>Date:</b> ' + dateLabel() + '</p>' +
-        '<p><b>Subject:</b> Request for Approval of Q2 Budget Review</p>' +
-        '<p class="gap">Dear Board Members,</p>' +
-        '<p class="gap">I am writing to kindly request your approval for the proposed review of the Q2 budget\u2026</p>' +
-      '</div>' +
-      '<span class="bub-time">' + timeLabel() + '</span></div>';
+    var bub = document.createElement('div');
+    bub.className = 'bub bub-bot';
+    bub.textContent = text;
+    var time = document.createElement('span');
+    time.className = 'bub-time';
+    time.textContent = timeLabel();
+    bub.appendChild(time);
+    row.appendChild(bub);
     chatBody.appendChild(row);
-    return row.firstChild;
+    scrollChat();
+    return bub;
   }
 
-  function actionsRow() {
+  function suggestRow() {
     var row = document.createElement('div');
-    row.className = 'chat-actions';
-    row.innerHTML = '<span class="act-pill">\uD83D\uDC4D Helpful</span>' +
-      '<span class="act-pill">\uD83D\uDC4E Not helpful</span>' +
-      '<span class="act-circ" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span>';
+    row.className = 'chat-suggest';
+    var pool = SUGGESTIONS.slice();
+    for (var i = 0; i < 3 && pool.length; i++) {
+      var pick = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+      var a = document.createElement('a');
+      a.className = 'sug-pill';
+      a.href = 'https://t.me/Abokiwise_bot';
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = pick;
+      row.appendChild(a);
+    }
     chatBody.appendChild(row);
+    scrollChat();
     return row;
   }
 
@@ -1203,36 +1221,87 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
     row.className = 'typing-row show';
     row.innerHTML = '<span class="typing-bub"><span></span><span></span><span></span></span>';
     chatBody.appendChild(row);
+    scrollChat();
     return row;
   }
 
   function runScriptedChat() {
-    setTimeout(function () {
-      pop(userRow());
+    var i = 0;
+    function next() {
+      if (i >= SCRIPT.length) {
+        setTimeout(function () { suggestRow().classList.add('show'); }, 380);
+        return;
+      }
+      var typingRow = appendTyping();
       setTimeout(function () {
-        var typingRow = appendTyping();
-        setTimeout(function () {
-          typingRow.remove();
-          pop(botRow());
-          setTimeout(function () { actionsRow().classList.add('show'); }, 520);
-        }, 1400);
-      }, 650);
-    }, 450);
+        typingRow.remove();
+        pop(botRow(SCRIPT[i]));
+        i++;
+        setTimeout(next, 520);
+      }, i === 0 ? 850 : 1150);
+    }
+    setTimeout(next, 450);
   }
 
   function showChatInstantly() {
-    [userRow(), botRow()].forEach(function (bub) {
+    SCRIPT.forEach(function (text) {
+      var bub = botRow(text);
       bub.classList.add('pop');
       bub.style.opacity = '1';
       bub.style.transform = 'none';
     });
-    actionsRow().classList.add('show');
+    suggestRow().classList.add('show');
   }
 
   if (reduceMotion) {
     showChatInstantly();
   } else {
     runScriptedChat();
+  }
+
+  /* ---------- composer: rotating typed suggestions in the text box ---------- */
+  var compPh = document.getElementById('compPh');
+  var PH_TEXTS = [
+    'Message AbokiWise\u2026',
+    'Draft a board memo\u2026',
+    'Summarize this FIRS circular\u2026',
+    'Improve this email\u2026',
+    'Outline my presentation\u2026',
+    'Ask me anything\u2026'
+  ];
+  if (compPh && !reduceMotion) {
+    (function typewriterLoop() {
+      var ti = 0;
+      function typePhrase() {
+        var phrase = PH_TEXTS[ti % PH_TEXTS.length];
+        var ci = 0;
+        function typeChar() {
+          if (ci <= phrase.length) {
+            compPh.textContent = phrase.slice(0, ci);
+            ci++;
+            setTimeout(typeChar, 42);
+          } else {
+            setTimeout(deletePhrase, 1900);
+          }
+        }
+        function deletePhrase() {
+          var di = phrase.length;
+          function delChar() {
+            if (di >= 0) {
+              compPh.textContent = phrase.slice(0, di);
+              di--;
+              setTimeout(delChar, 18);
+            } else {
+              ti++;
+              setTimeout(typePhrase, 260);
+            }
+          }
+          delChar();
+        }
+        typeChar();
+      }
+      typePhrase();
+    })();
   }
 })();
 </script>
