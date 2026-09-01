@@ -873,7 +873,8 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
     transform: none !important;
     transition: none !important;
   }
-  html:not(.motion-forced) .marquee-track { animation: none !important; }
+  /* marquee keeps scrolling even under reduced motion (product decision): slower, gentler */
+  html:not(.motion-forced) .marquee-track { animation-duration: 55s !important; }
   html:not(.motion-forced) .bub { animation: none !important; opacity: 1 !important; transform: none !important; }
   html:not(.motion-forced) .chat-actions { opacity: 1 !important; }
   html:not(.motion-forced) .btn:hover, html:not(.motion-forced) .tile:hover {
