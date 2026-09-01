@@ -277,7 +277,7 @@ h2.h-sec {
   min-height: calc(100vh - 132px);
   min-height: calc(100svh - 132px);
 }
-.hero-copy { align-self: center; }
+.hero-copy { align-self: center; min-width: 0; }
 .hero-copy > * + * { margin-top: var(--space-4); }
 .h-hero {
   font-size: clamp(42px, 6.6vw, 84px);
@@ -500,6 +500,9 @@ h2.h-sec {
 
 /* ---------- marquee ---------- */
 .marquee-wrap { padding-block: 20px; overflow: hidden; background: var(--cream); }
+/* hero inline marquee */
+.hero-marquee { display: flex; align-items: center; gap: 12px; min-width: 0; margin-top: var(--space-5) !important; }
+.hero-marquee .marquee-label { flex: none; }
 .marquee-in { display: flex; align-items: center; gap: 20px; }
 .marquee-label {
   display: flex;
@@ -847,6 +850,7 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
   .bub { max-width: 92%; }
   .marquee-in { flex-wrap: wrap; }
   .marquee-label { width: 100%; }
+  .hero-marquee { flex-wrap: wrap; gap: 8px; }
   .stats { grid-template-columns: 1fr; gap: var(--space-6); }
   .stat { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: var(--space-5); }
   .stat:first-child { border-top: none; padding-top: 0; }
@@ -953,6 +957,37 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
           <a class="textlink" href="#how" data-od-id="hero-cta-secondary">See how it works →</a>
         </div>
         <p class="hero-trust reveal" style="--d:220ms" data-od-id="hero-trust-line">Powered by 400+ AI models <span class="sep">&middot;</span> Built for Nigeria</p>
+
+        <div class="hero-marquee reveal" style="--d:260ms" data-od-id="task-marquee">
+          <span class="marquee-label" data-od-id="marquee-label"><svg class="curl" viewBox="0 0 32 24"><use href="#icon-arrow-curl"></use></svg>Try asking</span>
+          <div class="marquee-track-outer">
+            <div class="marquee-track" id="marqueeTrack">
+              <span class="chip"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-doc"></use></svg></span>Draft the board memo</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-quote"></use></svg></span>Summarize this FIRS circular</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span>Write a presentation outline</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-mail"></use></svg></span>Improve this email</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-table"></use></svg></span>One-page brief from this spreadsheet</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-scale"></use></svg></span>Compare these two quotes</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-doc"></use></svg></span>Draft the board memo</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-quote"></use></svg></span>Summarize this FIRS circular</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span>Write a presentation outline</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-mail"></use></svg></span>Improve this email</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-table"></use></svg></span>One-page brief from this spreadsheet</span>
+              <span class="chip-sep" aria-hidden="true">&bull;</span>
+              <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-scale"></use></svg></span>Compare these two quotes</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="chat-shell reveal" style="--d:240ms" data-od-id="hero-chat-mockup">
@@ -986,42 +1021,6 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
       </div>
     </div>
   </section>
-
-  <div class="ankara ankara--sm" aria-hidden="true"><svg viewBox="0 0 1200 22" preserveAspectRatio="none"><rect width="1200" height="22" fill="url(#ankaraSm)"/></svg></div>
-
-  <!-- marquee: task chips -->
-  <div class="marquee-wrap" data-od-id="task-marquee">
-    <div class="container marquee-in">
-      <span class="marquee-label reveal" data-od-id="marquee-label"><svg class="curl" viewBox="0 0 32 24"><use href="#icon-arrow-curl"></use></svg>Try asking</span>
-      <div class="marquee-track-outer">
-        <div class="marquee-track" id="marqueeTrack">
-          <span class="chip"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-doc"></use></svg></span>Draft the board memo</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-quote"></use></svg></span>Summarize this FIRS circular</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span>Write a presentation outline</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-mail"></use></svg></span>Improve this email</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-table"></use></svg></span>One-page brief from this spreadsheet</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-scale"></use></svg></span>Compare these two quotes</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-doc"></use></svg></span>Draft the board memo</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-quote"></use></svg></span>Summarize this FIRS circular</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span>Write a presentation outline</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-mail"></use></svg></span>Improve this email</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--orange"><svg viewBox="0 0 24 24"><use href="#icon-table"></use></svg></span>One-page brief from this spreadsheet</span>
-          <span class="chip-sep" aria-hidden="true">&bull;</span>
-          <span class="chip" aria-hidden="true"><span class="chip-icon chip-icon--green"><svg viewBox="0 0 24 24"><use href="#icon-scale"></use></svg></span>Compare these two quotes</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="ankara ankara--sm" aria-hidden="true"><svg viewBox="0 0 1200 22" preserveAspectRatio="none"><rect width="1200" height="22" fill="url(#ankaraSm)"/></svg></div>
 
