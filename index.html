@@ -1214,14 +1214,34 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
   /* ---------- composer: rotating typed suggestions in the text box ---------- */
   var compPh = document.getElementById('compPh');
   var PH_TEXTS = [
-    'Message AbokiWise\u2026',
-    'Draft a board memo\u2026',
+    'Draft a board memo for me\u2026',
+    'Paste an email here \u2014 I\u2019ll make it sharper\u2026',
     'Summarize this FIRS circular\u2026',
-    'Improve this email\u2026',
-    'Outline my presentation\u2026',
-    'Ask me anything\u2026'
+    'Outline my Monday presentation\u2026',
+    'Explain this contract clause simply\u2026',
+    'Write a proposal for a new client\u2026',
+    'Turn my notes into a clean report\u2026',
+    'Research my competitor for me\u2026',
+    'Draft a polite payment reminder\u2026',
+    'Prepare interview questions for a hire\u2026',
+    'Message AbokiWise\u2026'
   ];
-  if (compPh && !reduceMotion) {
+  // shuffle so every visit starts with a different suggestion
+  for (var s = PH_TEXTS.length - 1; s > 0; s--) {
+    var j = Math.floor(Math.random() * (s + 1));
+    var tmp = PH_TEXTS[s]; PH_TEXTS[s] = PH_TEXTS[j]; PH_TEXTS[j] = tmp;
+  }
+  if (compPh && reduceMotion) {
+    /* reduced motion: no typing animation, but still rotate the examples */
+    (function swapLoop() {
+      var si = 0;
+      compPh.textContent = PH_TEXTS[0];
+      setInterval(function () {
+        si = (si + 1) % PH_TEXTS.length;
+        compPh.textContent = PH_TEXTS[si];
+      }, 3200);
+    })();
+  } else if (compPh) {
     (function typewriterLoop() {
       var ti = 0;
       function typePhrase() {
