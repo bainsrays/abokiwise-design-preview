@@ -413,23 +413,7 @@ h2.h-sec {
   gap: 3px;
   line-height: 1;
 }
-.chat-suggest { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; opacity: 0; transition: opacity 420ms var(--ease-standard); }
-.chat-suggest.show { opacity: 1; }
-.sug-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: var(--white);
-  border-radius: var(--radius-pill);
-  padding: 9px 15px;
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--ink);
-  text-decoration: none;
-  box-shadow: 0 1px 2px rgba(15,42,29,0.13);
-  transition: transform var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard);
-}
-.sug-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(15,42,29,0.18); }
+
 .typing-row { display: none; align-self: flex-start; }
 .typing-row.show { display: flex; }
 .typing-bub {
@@ -1161,16 +1145,7 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
     "Hey! I'm AbokiWise \uD83D\uDC4B",
     "I live right inside your Telegram \u2014 no bot to create, no password, no setup. You'll be chatting in seconds.",
     "Research, reports, analysis, drafts, presentations \u2014 I handle the work that eats your day. 400+ AI models, on duty 24/7.",
-    "Enough about me \u2014 what's on your desk today? Tap a suggestion below \uD83D\uDC47"
-  ];
-
-  var SUGGESTIONS = [
-    '\u270D\uFE0F Draft the board memo',
-    '\uD83D\uDCC4 Summarize this FIRS circular',
-    '\uD83D\uDCCA Outline my presentation',
-    '\u2709\uFE0F Improve this email',
-    '\uD83E\uDDFE Brief me on this spreadsheet',
-    '\u2696\uFE0F Compare two supplier quotes'
+    "Enough about me \u2014 what do you do? Tell me and I'll show you exactly how I can make your work lighter \uD83D\uDE0A"
   ];
 
   function scrollChat() { chatBody.scrollTop = chatBody.scrollHeight; }
@@ -1191,25 +1166,6 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
     return bub;
   }
 
-  function suggestRow() {
-    var row = document.createElement('div');
-    row.className = 'chat-suggest';
-    var pool = SUGGESTIONS.slice();
-    for (var i = 0; i < 3 && pool.length; i++) {
-      var pick = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
-      var a = document.createElement('a');
-      a.className = 'sug-pill';
-      a.href = 'https://t.me/Abokiwise_bot';
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.textContent = pick;
-      row.appendChild(a);
-    }
-    chatBody.appendChild(row);
-    scrollChat();
-    return row;
-  }
-
   function pop(bub) {
     requestAnimationFrame(function () {
       requestAnimationFrame(function () { bub.classList.add('pop'); });
@@ -1228,10 +1184,7 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
   function runScriptedChat() {
     var i = 0;
     function next() {
-      if (i >= SCRIPT.length) {
-        setTimeout(function () { suggestRow().classList.add('show'); }, 380);
-        return;
-      }
+      if (i >= SCRIPT.length) { return; }
       var typingRow = appendTyping();
       setTimeout(function () {
         typingRow.remove();
@@ -1250,7 +1203,6 @@ footer { padding-block: 24px; border-top: 1px solid var(--line); background: var
       bub.style.opacity = '1';
       bub.style.transform = 'none';
     });
-    suggestRow().classList.add('show');
   }
 
   if (reduceMotion) {
